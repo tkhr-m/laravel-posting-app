@@ -25,7 +25,7 @@
 
 	<main>
 		<h1>投稿詳細</h1>
-		<a href="{{ route('posts.index') }}"&lt; 戻る></a>
+		<a href="{{ route('posts.index') }}">&lt; 戻る</a>
 
 		<article>
 			<h2>{{ $post->title }}</h2>
