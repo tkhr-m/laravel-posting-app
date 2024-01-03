@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
-    protected $guarded = ['id'];
 
     //一覧ページ
     public function index()
@@ -22,5 +22,25 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', compact('post'));
+    }
+
+    // 作成ページ
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    // 作成機能
+    public function store(PostRequest $request)
+    {
+        Post::create(
+            [
+                'title' => $request->input('title'),
+                'content' => $request->input('content'),
+                'user_id' => Auth::id(),
+            ]
+        );
+
+        return redirect()->route('posts.index')->with('flash_message', '投稿が完了しました。');
     }
 }
