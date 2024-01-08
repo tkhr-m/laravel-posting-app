@@ -26,11 +26,15 @@
 	<main>
 		<h1>投稿一覧</h1>
 
-		@if(session('flash_message'))
+		@if (session('flash_message'))
 				<p>{{ session('flash_message') }}</p>
 		@endif
 
-		<a href="{{ route(posts.create) }}">新規投稿</a>
+		@if (session('error_message'))
+				<p>{{ session('error_message') }}</p>
+		@endif
+
+		<a href="{{ route('posts.create') }}">新規投稿</a>
 
 		@if($posts->isNotEmpty())
 			@foreach($posts as $post)
@@ -38,6 +42,7 @@
 					<h2>{{ $post->title }}</h2>
 					<p>{{ $post->content }}</p>
 					<a href="{{ route('posts.show', $post) }}">詳細</a>
+					<a href="{{ route('posts.edit', $post) }}">編集</a>
 				</article>
 			@endforeach
 		@else
