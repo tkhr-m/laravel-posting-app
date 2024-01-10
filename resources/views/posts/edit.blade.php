@@ -22,7 +22,7 @@
 		@method('PATCH')
 		<div class="form-group mb-3">
 			<label for="title">タイトル</label>
-			<input type="text" class="form-control" id="title" name="title" value="{{ old('title'),  $post->title}}">
+			<input type="text" class="form-control" id="title" name="title" value="{{ old('title', $post->title) }}">
 		</div>
 		<div class="form-group mb-3">
 			<label for="content">本文</label>
